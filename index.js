@@ -1,5 +1,5 @@
 const Fastify = require('fastify')
-const addRoutes = require('./app')
+const initialize = require('./app')
 
 // require("greenlock-express")
 require('@root/greenlock-express')
@@ -14,7 +14,7 @@ require('@root/greenlock-express')
 
 // One of the worst and the unholiest marriages of all time
 // This is so bad that I cried for 24 hours straight after I witnessed this crime happen
-function httpsWorker (glx) {
+async function httpsWorker (glx) {
   const fastify = Fastify({
     logger: true,
     serverFactory (handler) {
@@ -23,7 +23,9 @@ function httpsWorker (glx) {
     }
   })
 
-  fastify.listen(443, '::').catch(e => console.error(e))
+  await initialize(fastify)
+
+  await fastify.listen(443, '::').catch(e => console.error(e))
 
   // Listening to 80 to solve HTTP-01 challenges and redirecting clueless people to HTTPS
   const httpServer = glx.httpServer()
