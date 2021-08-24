@@ -6,6 +6,7 @@ require('@root/greenlock-express')
   .init({
     packageRoot: __dirname,
     configDir: './greenlock.d',
+    maintainerEmail: process.env.LE_MAINTAINER_EMAIL,
 
     cluster: false
   })
