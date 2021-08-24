@@ -99,7 +99,7 @@
   resolved "https://registry.yarnpkg.com/@root/encoding/-/encoding-1.0.1.tgz#60cf3ccb9e2239226b30e8394c7a4a258a161c3e"
   integrity sha512-OaEub02ufoU038gy6bsNHQOjIn8nUjGiLcaRmJ40IUykneJkIW5fxDqKxQx48cszuNflYldsJLPPXCrGfHs8yQ==
 
-"@root/greenlock-express@git+https://git.maharshi.ninja/root/greenlock-express.js.git":
+"@root/greenlock-express@git+https://git.maharshi.ninja/root/greenlock-express.js.git#82aaf74e0dd62495007d5f42eb0e4087d107ebd6":
   version "4.0.4"
   resolved "git+https://git.maharshi.ninja/root/greenlock-express.js.git#82aaf74e0dd62495007d5f42eb0e4087d107ebd6"
   dependencies:
