@@ -1,4 +1,5 @@
-const routing = require('./app')
+const Fastify = require('fastify')
+const addRoutes = require('./app')
 
 // require("greenlock-express")
 require('@root/greenlock-express')
@@ -10,23 +11,20 @@ require('@root/greenlock-express')
   })
   .ready(httpsWorker)
 
+// One of the worst and the unholiest marriages of all time
+// This is so bad that I cried for 24 hours straight after I witnessed this crime happen
 function httpsWorker (glx) {
-  //
-  // HTTP2 would have been the default httpsServer for node v12+
-  // However... https://github.com/expressjs/express/issues/3388
-  //
-
-  // Get the raw http2 server:
-  const tlsOptions = null
-  const http2Server = glx.http2Server(tlsOptions, routing)
-
-  http2Server.listen(443, '::', function () {
-    console.info('Listening on ', http2Server.address())
+  const fastify = ({
+    logger: true,
+    serverFactory (handler) {
+      const tlsOptions = null
+      return glx.http2Server(tlsOptions, handler)
+    }
   })
 
-  // Note:
-  // You must ALSO listen on port 80 for ACME HTTP-01 Challenges
-  // (the ACME and http->https middleware are loaded by glx.httpServer)
+  fastify.listen(443)
+
+  // Listening to 80 to solve HTTP-01 challenges and redirecting clueless people to HTTPS
   const httpServer = glx.httpServer()
 
   httpServer.listen(80, '::', function () {
