@@ -23,7 +23,7 @@ function httpsWorker (glx) {
     }
   })
 
-  fastify.listen(443).catch(e => console.error(e))
+  fastify.listen(443, '::').catch(e => console.error(e))
 
   // Listening to 80 to solve HTTP-01 challenges and redirecting clueless people to HTTPS
   const httpServer = glx.httpServer()
