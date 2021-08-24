@@ -1,13 +1,20 @@
-const Hapi = require('@hapi/hapi')
+'use strict';
 
-const server = Hapi.server({ load: { sampleInterval: 1000 }, autoListen: false })
+var app = require('./app.js');
 
-server.route({
-  method: 'GET',
-  path: '/',
-  handler: (request, h) => {
-    return 'Hello World!'
-  }
-})
+require('greenlock-express')
+    .init({
+        packageRoot: __dirname,
 
-module.exports = server
+        // contact for security and critical bug notices
+        maintainerEmail: "mojee@mojee.sly.io",
+
+        // where to look for configuration
+        configDir: './greenlock.d',
+
+        // whether or not to run at cloudscale
+        cluster: false
+    })
+    // Serves on 80 and 443
+    // Get's SSL certificates magically!
+    .serve(app);

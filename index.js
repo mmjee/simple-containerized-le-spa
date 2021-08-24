@@ -1,4 +1,4 @@
-const Server = require('./server')
+const routing = require('./app')
 
 // require("greenlock-express")
 require('@root/greenlock-express')
@@ -18,7 +18,7 @@ function httpsWorker (glx) {
 
   // Get the raw http2 server:
   const tlsOptions = null
-  const http2Server = glx.http2Server(tlsOptions, Server._core._dispatch)
+  const http2Server = glx.http2Server(tlsOptions, routing)
 
   http2Server.listen(443, '::', function () {
     console.info('Listening on ', http2Server.address())

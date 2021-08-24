@@ -6,8 +6,8 @@
   "license": "Unlicense",
   "private": false,
   "dependencies": {
-    "@hapi/hapi": "^20.1.5",
-    "@root/greenlock-express": "git+https://git.maharshi.ninja/root/greenlock-express.js.git#82aaf74e0dd62495007d5f42eb0e4087d107ebd6"
+    "@root/greenlock-express": "git+https://git.maharshi.ninja/root/greenlock-express.js.git#82aaf74e0dd62495007d5f42eb0e4087d107ebd6",
+    "fastify": "^3.20.2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
