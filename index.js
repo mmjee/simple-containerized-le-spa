@@ -15,7 +15,7 @@ require('@root/greenlock-express')
 // One of the worst and the unholiest marriages of all time
 // This is so bad that I cried for 24 hours straight after I witnessed this crime happen
 function httpsWorker (glx) {
-  const fastify = ({
+  const fastify = Fastify({
     logger: true,
     serverFactory (handler) {
       const tlsOptions = null
@@ -23,7 +23,7 @@ function httpsWorker (glx) {
     }
   })
 
-  fastify.listen(443)
+  fastify.listen(443).catch(e => console.error(e))
 
   // Listening to 80 to solve HTTP-01 challenges and redirecting clueless people to HTTPS
   const httpServer = glx.httpServer()
