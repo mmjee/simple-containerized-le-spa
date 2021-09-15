@@ -1,5 +1,5 @@
 const Fastify = require('fastify')
-const initialize = require('schl/app')
+const initialize = require('scls/app')
 
 // require("greenlock-express")
 require('@root/greenlock-express')
